@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-canvas: #080B10;
+    --bg-surface: #0E131B;
+    --bg-surface-elevated: #151C26;
+    --bg-band: #F6F8FA;
+    --bg-card-light: #FFFFFF;
+    --border-light: rgba(10, 14, 20, 0.08);
+    --ink-pure: #FFFFFF;
+    --ink-primary: #EEF2F6;
+    --ink-muted: #8E9BAE;
+    --ink-dark-primary: #0A0E14;
+    --ink-dark-muted: #5A6A80;
+    --accent-cobalt: #3B72FE;
+    --accent-mint: #00D284;
+    --accent-amber: #F59E0B;
+    --border-hairline: rgba(238, 242, 246, 0.08);
+    --ease-nordic: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--ink-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+  }
+}
+
+.font-display {
+  font-family: 'Syne', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.font-body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom architectural scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080B10;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ============================================================ */
+/* Intentional Architectural Cursors across the entire web app  */
+/* ============================================================ */
+
+/* 1. Clickable Actions: Buttons, links, navigation items, pills, tabs */
+button,
+a,
+[role="button"],
+select,
+summary,
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"],
+input[type="button"],
+.btn-nordic-primary,
+.cursor-pointer,
+.glass-capsule button,
+.band-daylight button {
+  cursor: pointer;
+}
+
+/* 2. Sliders & Draggable elements (grab / grabbing) */
+input[type="range"],
+.cursor-grab {
+  cursor: grab;
+}
+input[type="range"]:active,
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
+/* 3. Text inputs, textareas, and code editor areas */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+textarea,
+[contenteditable="true"],
+.font-mono textarea,
+pre code {
+  cursor: text;
+}
+
+/* 4. Help & Informational Tooltip triggers */
+[title],
+abbr,
+.cursor-help,
+[data-tooltip] {
+  cursor: help;
+}
+
+/* 5. Disabled / Inactive elements */
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled,
+[disabled],
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+/* 6. Asynchronous Loading / In-Progress states */
+.is-loading,
+button[data-loading="true"],
+.cursor-wait {
+  cursor: wait !important;
+}
+.cursor-progress {
+  cursor: progress !important;
+}
+
+/* 7. Modal backdrop & close triggers */
+.cursor-close {
+  cursor: pointer;
+}
+
+/* 8. Zoomable avatars & inspection cards */
+.cursor-zoom {
+  cursor: zoom-in;
+}
+
+/* NordPixel-style Architectural Daylight Band */
+.band-daylight {
+  background-color: #F6F8FA;
+  color: #0A0E14;
+  border-radius: 36px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Glassmorphism Capsule */
+.glass-capsule {
+  background: rgba(14, 19, 27, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* Tactile Pill Button */
+.btn-nordic-primary {
+  background: #3B72FE;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-nordic-primary:hover {
+  background: #2A61ED;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(59, 114, 254, 0.4);
+}
+
+/* Kinetic Typography & Masking */
+.kinetic-mask {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.kinetic-word {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-origin: bottom left;
+}
+
+.kinetic-interactive-word {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s var(--ease-nordic), transform 0.3s var(--ease-nordic);
+}
+
+.kinetic-interactive-word:hover {
+  color: #3B72FE;
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Ticker Marquee Ribbon */
+@keyframes ticker-left {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes ticker-right {
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.animate-ticker-left {
+  animation: ticker-left 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker-right {
+  animation: ticker-right 32s linear infinite;
+  will-change: transform;
+}
+
+.ticker-pause:hover .animate-ticker-left,
+.ticker-pause:hover .animate-ticker-right {
+  animation-play-state: paused;
+}
+
+/* Dynamic Strikethrough */
+.strikethrough-kinetic {
+  position: relative;
+  display: inline-block;
+}
+
+.strikethrough-kinetic::after {
+  content: '';
+  position: absolute;
+  left: -4%;
+  top: 52%;
+  width: 108%;
+  height: 3px;
+  background: #EF4444;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+}
+
+.strikethrough-kinetic.active::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker-left,
+  .animate-ticker-right {
+    animation: none;
+  }
+  .kinetic-word {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
